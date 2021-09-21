@@ -1,1 +1,4 @@
 QlikView Data files are stored in subfolders.
+
+Global Variables
+vG.QVDPath
