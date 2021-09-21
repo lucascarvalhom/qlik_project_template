@@ -1,6 +1,7 @@
 # qlik_project_template
 Template for QlikSense repositories using Google Cloud Storage.
 
-Project: Template
-Author: Lucas Miranda
-Date: 2021-09-21
+#Description
+* Project: Template
+* Author: Lucas Miranda
+* Date: 21/09/2021
