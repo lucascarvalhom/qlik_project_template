@@ -66,8 +66,8 @@ jobs:
         run: gsutil  -m cp -r ./Info.txt gs://"$BUCKET""$PROJECT"
         
        # 3.5 Copy "Version.md"
-      - name: Upload "Version_1-1" file to bucket 
-        run: gsutil  -m cp -r ./Version_1-1 gs://"$BUCKET""$PROJECT"    
+      - name: Upload "Version.md" file to bucket 
+        run: gsutil  -m cp -r ./Version.md gs://"$BUCKET""$PROJECT"    
 
        # 3.6 Copy "README.md"
       - name: Upload "README.md" file to bucket 
