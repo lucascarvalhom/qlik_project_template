@@ -1,0 +1,4 @@
+Load path for QVD files.
+
+Global Variables
+vG.LoadPath
