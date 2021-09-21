@@ -1,0 +1,5 @@
+Locale for different regions, used for easy migration between
+regions
+
+Global Variable
+vG.LocalePath
