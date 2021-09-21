@@ -1,0 +1,4 @@
+Store for custom include scripts
+
+GlobalVariables
+vG.CustomPath 

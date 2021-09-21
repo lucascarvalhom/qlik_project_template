@@ -1,0 +1,5 @@
+Configuration and language files like Excel and txt. This folders
+could be shared to make configuration changes easier.
+
+Global Variables
+vG.ConfigPath

@@ -1,0 +1,4 @@
+Extract path for QVD files.
+
+Global Variables
+vG.ExtractPath 

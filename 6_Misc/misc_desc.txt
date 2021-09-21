@@ -1,0 +1,2 @@
+To store documentation, extension and other things related to this
+container

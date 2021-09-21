@@ -1,0 +1,5 @@
+Folder where QlikView Include files are stored. These are script
+parts that are called from the main QlikView script.
+
+Global Variables:
+vG.IncludePath 
