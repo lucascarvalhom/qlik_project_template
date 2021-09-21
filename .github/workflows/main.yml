@@ -12,7 +12,7 @@ on:
 #Variables
 env:
   BUCKET: qlik_projects/
-  PROJECT: qlik_project_template/
+  PROJECT: ${{github.event.repository.name}}/
   
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -40,53 +40,48 @@ jobs:
       
       # 2.1
       - name: Sync "2_Config" files to bucket 
-        run: gsutil -m rsync -R ./2_Config gs://"$BUCKET"/"$PROJECT"2_Config     
+        run: gsutil -m rsync -R ./2_Config gs://"$BUCKET""$PROJECT"2_Config     
       # 2.2
       - name: Sync "3_Include" files to bucket 
-        run: gsutil -m rsync -R ./3_Include gs://"$BUCKET"/"$PROJECT"3_Include
+        run: gsutil -m rsync -R ./3_Include gs://"$BUCKET""$PROJECT"3_Include
       # 2.3
       - name: Sync "6_Misc" files to bucket 
-        run: gsutil -m rsync -R ./6_Misc gs://"$BUCKET"/"$PROJECT"6_Misc  
+        run: gsutil -m rsync -R ./6_Misc gs://"$BUCKET""$PROJECT"6_Misc  
         
       # 3 Upload files to create folders and update information
       # 3.1 Copy 1_QVD
       - name: Upload "1_QVD" files to bucket 
-        run: gsutil  -m cp -r ./1_QVD gs://"$BUCKET"/"$PROJECT"1_QVD  
+        run: gsutil  -m cp -r ./1_QVD gs://"$BUCKET""$PROJECT"
    
       # 3.2 Copy 4_Export
       - name: Upload "4_Export" files to bucket 
-        run: gsutil  -m cp -r ./4_Export gs://"$BUCKET" /"$PROJECT"4_Export  
+        run: gsutil  -m cp -r ./4_Export gs://"$BUCKET""$PROJECT"
 
       # 3.3 Copy 5_Import
       - name: Upload "5_Import" files to bucket 
-        run: gsutil  -m cp -r ./5_Import gs://"$BUCKET"/"$PROJECT"5_Import  
-  
-      # 3.4 Copy 1_QVD
-      - name: Upload "4_Export" files to bucket 
-        run: gsutil  -m cp -r ./4_Export gs://"$BUCKET"/"$PROJECT"4_Export  
+        run: gsutil  -m cp -r ./5_Import gs://"$BUCKET""$PROJECT" 
         
       # 3.4 Copy "Info.txt"
       - name: Upload "Info.txt" file to bucket 
-        run: gsutil  -m cp -r ./Info.txt gs://"$BUCKET"/"$PROJECT"
+        run: gsutil  -m cp -r ./Info.txt gs://"$BUCKET""$PROJECT"
         
-       # 3.5 Copy "Version_1-1"
+       # 3.5 Copy "Version.md"
       - name: Upload "Version_1-1" file to bucket 
-        run: gsutil  -m cp -r ./Version_1-1 gs://"$BUCKET"/"$PROJECT"    
+        run: gsutil  -m cp -r ./Version_1-1 gs://"$BUCKET""$PROJECT"    
 
        # 3.6 Copy "README.md"
       - name: Upload "README.md" file to bucket 
-        run: gsutil  -m cp -r ./README.md gs://"$BUCKET"/"$PROJECT"    
+        run: gsutil  -m cp -r ./README.md gs://"$BUCKET""$PROJECT"    
         
       # 4 Cache
       # 4.1
       - name: Set cache-control for qvd files
-        run: gsutil -m setmeta -h "Cache-Control:no-cache, no-store"  gs://"$BUCKET"/"$PROJECT"**/*.{qvs,qvf}
+        run: gsutil -m setmeta -h "Cache-Control:no-cache, no-store"  gs://"$BUCKET""$PROJECT"**/*.{qvs,qvf}
         
       # 4.2
       # - name: Set cache-control for static files for 1 hour
-      #  run: gsutil -m setmeta -h "Cache-Control:public, max-age=1800"  gs://"$BUCKET"/"$PROJECT"**/*.{.qvf}
+      #  run: gsutil -m setmeta -h "Cache-Control:public, max-age=1800"  gs://"$BUCKET""$PROJECT"**/*.{.qvf}
             
-      # 5 Acess
+      # 5 Access
       #- name: Allow public access
-      #  run: gsutil -m acl ch -R -u AllUsers:R gs://"$BUCKET"/"$PROJECT"
-                
+      #  run: gsutil -m acl ch -R -u AllUsers:R gs://"$BUCKET""$PROJECT"
