@@ -1,0 +1,5 @@
+Store for sub routines, this is a way to reuse code between
+applications
+
+Global Variables 
+vG.SubPath 
