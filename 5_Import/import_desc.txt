@@ -1,0 +1,4 @@
+Folder used to store import data from external systems
+
+Global Variables
+vG.ImportPath 
