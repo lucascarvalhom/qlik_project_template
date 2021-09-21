@@ -1,0 +1,1 @@
+QlikView Data files are stored in subfolders.
