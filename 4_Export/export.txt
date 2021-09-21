@@ -1,0 +1,5 @@
+Folder used to store from QlikView exported data, probably txt or
+qvx
+
+Global Variables
+vG.ExportPath 
