@@ -1,2 +1,4 @@
 Information files describing the folder purpose and Path variable.
 There are Info files in every folder.
+
+All the informations and patterns to this project uses the "Qlik Sense - Qlik Deployment Framework" (https://community.qlik.com/cyjdu72974/attachments/cyjdu72974/new-to-qlik-sense/96397/1/Qlik%20Deployment%20Framework-Qlik%20Sense%20Getting%20Started%20Guide.pdf).
