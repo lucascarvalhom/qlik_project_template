@@ -1,0 +1,4 @@
+Transform path for QVD files.
+
+Global Variables
+vG.TransformPath 
