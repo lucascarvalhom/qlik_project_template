@@ -1,0 +1,5 @@
+Stores all the variables needed to use the framework, like paths
+inside the container
+
+Global Variables
+vG.BaseVariablePath
