@@ -13,3 +13,7 @@ Actions secrets needed:
 - GCP_ACCOUNT_EMAIL
 - GCP_PROJECT
 - GCP_SA_KEY
+
+* Master calendar script for reuse.
+1. MasterCalendar_1 - general script;
+2. MasterCalendar_2 - complete script with future data.

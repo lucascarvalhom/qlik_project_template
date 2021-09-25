@@ -1,0 +1,62 @@
+/* 
+    Desc: Master Calendar complete script with future date 
+    Nome: Lucas Carvalho Miranda
+    ago/2021
+
+*/
+
+/*date field for period dimension*/
+set vFieldDate 	= 'ocorrencia_dia';
+/*origin table of date field, usually Facts*/
+set vTableDate 	= 'FATO_OCORRENCIA';
+
+set vTableName 	= 'DIM_CALENDARIO';
+set vFileName	= '$(vTableName).qvd';
+
+LET vBegin = Now();
+TRACE # Generating Master Calendar - $(vTableName) - $(vBegin);
+
+$(vTableName):
+    LOAD*,
+        if(Days <= 200,'Up to 200 days',
+                if(Days <= 500, 'Up to 500 days',
+                    'Above 500 days')) as DaysRange
+        ;
+    LOAD
+        TempDate			 												AS Date,
+        AutoNumber(TempDate) 												AS %KeyCalendarDate,
+        Day(TempDate) 														AS Day,	
+        Month(TempDate) 													AS Month,
+        Year(TempDate) 														AS Year,
+        week(TempDate) 														AS Week,
+        WeekDay(TempDate) 													AS DayOfWeek,
+        if(year(TempDate) = year(today()),1,0) 								AS CurrentYearFlag,
+        if(year(TempDate) = (year(today()) -1),1,0) 						AS PastYearFlag,
+        Ceil(Month(TempDate)/2)&'º'											AS Bi,
+        Ceil(Month(TempDate)/3)&'º'											AS Trimester,
+        Ceil(Month(TempDate)/6)&'º'											AS Semester,
+        Weekstart(TempDate)									    			AS WeekStart,
+        Week(Weekstart(TempDate)) & '-' & WeekYear(Weekstart(TempDate)) 	AS WeekStartYear,
+        Today() - TempDate 													AS Days,
+        If(TempDate<=Today(),1,0) 											AS DoneFlag, 
+        If(TempDate>=Today(),1,0) 											AS IntendedFlag
+    ;
+    LOAD
+      	date(minDate + IterNo()) AS TempDate,
+      	maxDate // Used in InYearToDate() above, but not kept
+   	  	WHILE minDate + IterNo() <= maxDate
+	;
+LOAD
+	Min($(vFieldDate)) -1 as minDate,
+	Max($(vFieldDate)) 	  as maxDate
+Resident $(vTableDate);
+
+LET vEnd = Now();
+TRACE # Master Calendar generated - $(vEnd);
+
+TRACE # Creating .qvd file of $(vTableName);
+
+STORE $(vTableName) INTO [$(vG.TransformPath)$(vTableName).qvd](qvd);
+
+TRACE # File $(vTableName).qvd sucessfully created;
+TRACE ;

@@ -75,8 +75,8 @@ jobs:
         
       # 4 Cache
       # 4.1
-      - name: Set cache-control for qvd files
-        run: gsutil -m setmeta -h "Cache-Control:no-cache, no-store"  gs://"$BUCKET""$PROJECT"**/*.{qvs,qvf}
+      - name: Set cache-control for qlik files
+        run: gsutil -m setmeta -h "Cache-Control:no-cache, no-store"  gs://"$BUCKET""$PROJECT"**/*.{.qvd,.qvs,.qvf}
         
       # 4.2
       # - name: Set cache-control for static files for 1 hour
