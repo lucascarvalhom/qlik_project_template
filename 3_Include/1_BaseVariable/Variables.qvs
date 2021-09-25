@@ -3,44 +3,44 @@ TRACE ### Setting Path variables ####
 
 //DEPLOYMENT
 set vG.QVDPath 			= 'lib://1_QVD/';
-set vG.ExtractPath  	= $(vG.QVDPath)'1_Extract/';
-set vG.TransformPath   	= $(vG.QVDPath)'2_Transform/';
-set vG.LoadPath  		= $(vG.QVDPath)'3_Load/';
+set vG.ExtractPath  	= '$(vG.QVDPath)1_Extract/';
+set vG.TransformPath   	= '$(vG.QVDPath)2_Transform/';
+set vG.LoadPath  		= '$(vG.QVDPath)3_Load/';
 set vG.ConfigPath 		= 'lib://2_Config/';
 set vG.IncludePath		= 'lib://3_Include/';
-set vG.BaseVariablePath = $($vG.IncludePath)'1_BaseVariable/';
-set vG.LocalePath		= $($vG.IncludePath)'2_Locale/';
-set vG.CustomPath 		= $($vG.IncludePath)'3_Custom/';
-set vG.SubPath 			= $($vG.IncludePath)'4_Sub/';
+set vG.BaseVariablePath = '$($vG.IncludePath)1_BaseVariable/';
+set vG.LocalePath		= '$($vG.IncludePath)2_Locale/';
+set vG.CustomPath 		= '$($vG.IncludePath)3_Custom/';
+set vG.SubPath 			= '$($vG.IncludePath)4_Sub/';
 set vG.ExportPath		= 'lib://4_Export/';
 set vG.ImportPath 		= 'lib://5_Import/';
 
 //RELEASE
 //set vG.QVDPath 			= 'lib://1_QVD/';
-//set vG.ExtractPath  		= $(vG.QVDPath)'1_Extract/';
-//set vG.TransformPath		= $(vG.QVDPath)'2_Transform/';
-//set vG.LoadPath  			= $(vG.QVDPath)'3_Load/';
+//set vG.ExtractPath  	= '$(vG.QVDPath)1_Extract/';
+//set vG.TransformPath   	= '$(vG.QVDPath)2_Transform/';
+//set vG.LoadPath  		= '$(vG.QVDPath)3_Load/';
 //set vG.ConfigPath 		= 'lib://2_Config/';
 //set vG.IncludePath		= 'lib://3_Include/';
-//set vG.BaseVariablePath 	= $($vG.IncludePath)'1_BaseVariable/';
-//set vG.LocalePath			= $($vG.IncludePath)'2_Locale/';
-//set vG.CustomPath 		= $($vG.IncludePath)'3_Custom/';
-//set vG.SubPath 			= $($vG.IncludePath)'4_Sub/';
-//set vG.ExportPath			= 'lib://4_Export/';
+//set vG.BaseVariablePath = '$($vG.IncludePath)1_BaseVariable/';
+//set vG.LocalePath		= '$($vG.IncludePath)2_Locale/';
+//set vG.CustomPath 		= '$($vG.IncludePath)3_Custom/';
+//set vG.SubPath 			= '$($vG.IncludePath)4_Sub/';
+//set vG.ExportPath		= 'lib://4_Export/';
 //set vG.ImportPath 		= 'lib://5_Import/';
 
 //MASTER 
 //set vG.QVDPath 			= 'lib://1_QVD/';
-//set vG.ExtractPath  		= $(vG.QVDPath)'1_Extract/';
-//set vG.TransformPath		= $(vG.QVDPath)'2_Transform/';
-//set vG.LoadPath  			= $(vG.QVDPath)'3_Load/';
+//set vG.ExtractPath  	= '$(vG.QVDPath)1_Extract/';
+//set vG.TransformPath   	= '$(vG.QVDPath)2_Transform/';
+//set vG.LoadPath  		= '$(vG.QVDPath)3_Load/';
 //set vG.ConfigPath 		= 'lib://2_Config/';
 //set vG.IncludePath		= 'lib://3_Include/';
-//set vG.BaseVariablePath 	= $($vG.IncludePath)'1_BaseVariable/';
-//set vG.LocalePath			= $($vG.IncludePath)'2_Locale/';
-//set vG.CustomPath 		= $($vG.IncludePath)'3_Custom/';
-//set vG.SubPath 			= $($vG.IncludePath)'4_Sub/';
-//set vG.ExportPath			= 'lib://4_Export/';
+//set vG.BaseVariablePath = '$($vG.IncludePath)1_BaseVariable/';
+//set vG.LocalePath		= '$($vG.IncludePath)2_Locale/';
+//set vG.CustomPath 		= '$($vG.IncludePath)3_Custom/';
+//set vG.SubPath 			= '$($vG.IncludePath)4_Sub/';
+//set vG.ExportPath		= 'lib://4_Export/';
 //set vG.ImportPath 		= 'lib://5_Import/';
 
 TRACE ____________________________________

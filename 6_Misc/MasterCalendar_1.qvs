@@ -1,0 +1,55 @@
+/* 
+    Desc: Master Calendar script 
+    Nome: Lucas Carvalho Miranda
+    ago/2021
+
+*/
+
+/*date field for period dimension*/
+set vFieldDate 	= 'ocorrencia_dia';
+/*origin table of date field, usually Facts*/
+set vTableDate 	= 'FATO_OCORRENCIA';
+
+set vTableName 	= 'DIM_CALENDARIO';
+set vFileName	= '$(vTableName).qvd';
+
+LET vBegin = Now();
+TRACE # Generating Master Calendar - $(vTableName) - $(vBegin);
+
+$(vTableName):
+        LOAD
+          	TempDate 									AS Date,
+		  	AutoNumber(TempDate) 						AS %KeyCalendarDate,
+    		Day(TempDate) 								AS Day,
+          	Month(TempDate) 							AS Month,
+          	Year(TempDate) 								AS Year,
+            Week(TempDate)                              AS Week,
+          	Weekday(TempDate) 							AS WeekDay,
+          	InYearToDate(TempDate, maxdate, 0) * -1 	AS CurYTDFlag,
+          	InYearToDate(TempDate, maxdate, -1) * -1 	AS LastYTDFlag	
+        ;
+    //=== Generate a temp table of dates ===
+    LOAD
+      date(mindate + IterNo()) AS TempDate,
+      maxdate // Used in InYearToDate() above, but not kept
+    WHILE mindate + IterNo() <= maxdate
+    ;
+//=== Get min/max dates from fact table ===/
+LOAD
+  min($(vFieldDate))-1 	as mindate,
+  max($(vFieldDate)) 	as maxdate
+RESIDENT $(vTableDate)
+;
+
+LET vEnd = Now();
+TRACE # Master Calendar generated - $(vEnd);
+
+TRACE # Creating .qvd file of $(vTableName);
+
+STORE $(vTableName) INTO [$(vG.TransformPath)$(vTableName).qvd](qvd);
+
+TRACE # File $(vTableName).qvd sucessfully created;
+
+//DROP TABLE $(vTableName);
+
+TRACE ;
