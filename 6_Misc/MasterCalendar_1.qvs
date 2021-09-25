@@ -17,26 +17,29 @@ LET vBegin = Now();
 TRACE # Generating Master Calendar - $(vTableName) - $(vBegin);
 
 $(vTableName):
+        LOAD
+          	TempDate 									AS Date,
+		  	AutoNumber(TempDate) 						AS %KeyCalendarDate,
+    		Day(TempDate) 								AS Day,
+          	Month(TempDate) 							AS Month,
+          	Year(TempDate) 								AS Year,
+            Week(TempDate)                              AS Week,
+          	Weekday(TempDate) 							AS WeekDay,
+          	InYearToDate(TempDate, maxdate, 0) * -1 	AS CurYTDFlag,
+          	InYearToDate(TempDate, maxdate, -1) * -1 	AS LastYTDFlag	
+        ;
+    //=== Generate a temp table of dates ===
     LOAD
-        TempDate			 												AS Date,
-        AutoNumber(TempDate) 												AS %KeyCalendarDate,
-        Day(TempDate) 														AS Day,	
-        Month(TempDate) 													AS Month,
-        Year(TempDate) 														AS Year,
-        week(TempDate) 														AS Week,
-        WeekDay(TempDate) 													AS DayOfWeek,
-        if(year(TempDate) = year(today()),1,0) 								AS CurrentYearFlag,
-        if(year(TempDate) = (year(today()) -1),1,0) 						AS PastYearFlag,
+      date(mindate + IterNo()) AS TempDate,
+      maxdate // Used in InYearToDate() above, but not kept
+    WHILE mindate + IterNo() <= maxdate
     ;
-    LOAD
-      	date(minDate + IterNo()) AS TempDate,
-      	maxDate // Used in InYearToDate() above, but not kept
-   	  	WHILE minDate + IterNo() <= maxDate
-	;
+//=== Get min/max dates from fact table ===/
 LOAD
-	Min($(vFieldDate)) -1 as minDate,
-	Max($(vFieldDate)) 	  as maxDate
-Resident $(vTableDate);
+  min($(vFieldDate))-1 	as mindate,
+  max($(vFieldDate)) 	as maxdate
+RESIDENT $(vTableDate)
+;
 
 LET vEnd = Now();
 TRACE # Master Calendar generated - $(vEnd);
@@ -46,4 +49,7 @@ TRACE # Creating .qvd file of $(vTableName);
 STORE $(vTableName) INTO [$(vG.TransformPath)$(vTableName).qvd](qvd);
 
 TRACE # File $(vTableName).qvd sucessfully created;
+
+//DROP TABLE $(vTableName);
+
 TRACE ;
